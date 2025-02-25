@@ -1,0 +1,48 @@
+<!--pages/market/market.wxml-->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar" bindtap="goToSearch">
+    <icon type="search" size="14"></icon>
+    <text style="font-size: small; color: #999;">搜索股票代码或名称</text>
+  </view>
+
+  <!-- 市场切换 -->
+  <view class="market-tabs">
+    <view class="tab {{currentMarket === 'SH' ? 'active' : ''}}" bindtap="switchMarket" data-market="SH">沪深京</view>
+    <view class="tab {{currentMarket === 'HK' ? 'active' : ''}}" bindtap="switchMarket" data-market="HK">港股</view>
+    <view class="tab {{currentMarket === 'US' ? 'active' : ''}}" bindtap="switchMarket" data-market="US">美股</view>
+  </view>
+
+  <!-- 指数信息 -->
+  <view class="index-section">
+    <scroll-view scroll-x="true" class="index-scroll">
+      <view class="index-item {{item.change < 0 ? 'down' : 'up'}}" wx:for="{{indexList}}" wx:key="code">
+        <view class="index-name">{{item.name}}</view>
+        <view class="index-price">{{item.price}}</view>
+        <view class="index-change">
+          {{item.change}} {{item.changePercent}}%
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 股票列表 -->
+  <view class="stock-list-header">
+    <view class="header-item">股票</view>
+    <view class="header-item">最新</view>
+    <view class="header-item">涨跌幅</view>
+  </view>
+
+  <scroll-view scroll-y="true" class="stock-list">
+    <view class="stock-item" wx:for="{{stockList}}" wx:key="code" bindtap="goToDetail" data-stock="{{item}}">
+      <view class="stock-info">
+        <view class="stock-name">{{item.name}}</view>
+        <view class="stock-code">{{item.code}}</view>
+      </view>
+      <view class="stock-price">{{item.price}}</view>
+      <view class="stock-change {{item.changePercent >= 0 ? 'up' : 'down'}}">
+        {{item.changePercent}}%
+      </view>
+    </view>
+  </scroll-view>
+</view>

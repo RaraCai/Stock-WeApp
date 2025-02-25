@@ -1,0 +1,82 @@
+<view class="container">
+  <!-- 基本信息 -->
+  <view class="basic-info">
+    <view class="stock-header">
+      <view class="left">
+        <view class="stock-name">{{stockInfo.name}}</view>
+        <view class="stock-code">{{stockInfo.code}}</view>
+      </view>
+      <view class="right">
+        <view class="current-price {{stockInfo.changePercentage >= 0 ? 'up' : 'down'}}">
+          {{stockInfo.price}}
+        </view>
+        <view class="change-info {{stockInfo.changePercentage >= 0 ? 'up' : 'down'}}">
+          <text>{{stockInfo.change}}</text>
+          <text>{{stockInfo.changePercentage}}%</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 主要指标 -->
+    <view class="indicators">
+      <view class="indicator-item">
+        <text class="label">同比</text>
+        <text class="value">{{stockInfo.yearOnYear}}%</text>
+      </view>
+      <view class="indicator-item">
+        <text class="label">环比</text>
+        <text class="value">{{stockInfo.monthOnMonth}}%</text>
+      </view>
+      <view class="indicator-item">
+        <text class="label">市盈率(动)</text>
+        <text class="value">{{stockInfo.peDynamic}}</text>
+      </view>
+      <view class="indicator-item">
+        <text class="label">市盈率(静)</text>
+        <text class="value">{{stockInfo.peStatic}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 估值指标 -->
+  <view class="valuation-section">
+    <view class="section-title">估值指标</view>
+    <view class="valuation-grid">
+      <view class="grid-item">
+        <text class="label">市净率</text>
+        <text class="value">{{stockInfo.pb}}</text>
+        <text class="estimate">预估: {{stockInfo.pbEstimate}}</text>
+      </view>
+      <view class="grid-item">
+        <text class="label">市现率</text>
+        <text class="value">{{stockInfo.pcf}}</text>
+        <text class="estimate">预估: {{stockInfo.pcfEstimate}}</text>
+      </view>
+      <view class="grid-item">
+        <text class="label">市盈率(动)</text>
+        <text class="value">{{stockInfo.peDynamic}}</text>
+        <text class="estimate">预估: {{stockInfo.peDynamicEstimate}}</text>
+      </view>
+      <view class="grid-item">
+        <text class="label">市盈率(静)</text>
+        <text class="value">{{stockInfo.peStatic}}</text>
+        <text class="estimate">预估: {{stockInfo.peStaticEstimate}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- K线图 -->
+  <view class="chart-section">
+    <view class="chart-header">
+      <view class="section-title">K线图</view>
+      <view class="time-selector">
+        <text class="{{timeRange === 'day' ? 'active' : ''}}" data-range="day" bindtap="switchTimeRange">日K</text>
+        <text class="{{timeRange === 'week' ? 'active' : ''}}" data-range="week" bindtap="switchTimeRange">周K</text>
+        <text class="{{timeRange === 'month' ? 'active' : ''}}" data-range="month" bindtap="switchTimeRange">月K</text>
+      </view>
+    </view>
+    <view class="chart-container">
+      <ec-canvas id="mychart-dom-kline" canvas-id="mychart-kline" ec="{{ ec }}"></ec-canvas>
+    </view>
+  </view>
+</view> 

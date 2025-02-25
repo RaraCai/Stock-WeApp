@@ -1,0 +1,53 @@
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search-header">
+    <view class="search-input-wrap">
+      <icon type="search" size="14"></icon>
+      <input 
+        class="search-input" 
+        placeholder="输入股票代码或名称" 
+        value="{{searchKey}}"
+        focus="true"
+        bindinput="onInput"
+        bindconfirm="onSearch"
+      />
+      <icon type="clear" size="14" wx:if="{{searchKey}}" bindtap="clearInput"></icon>
+    </view>
+    <view class="cancel-btn" bindtap="goBack">取消</view>
+  </view>
+
+  <!-- 搜索结果 -->
+  <scroll-view scroll-y="true" class="search-result" wx:if="{{searchKey && searchList.length > 0}}">
+    <view 
+      class="result-item" 
+      wx:for="{{searchList}}" 
+      wx:key="code"
+      bindtap="selectStock"
+      data-stock="{{item}}"
+    >
+      <view class="stock-info">
+        <text class="stock-name">{{item.name}}</text>
+        <text class="stock-code">{{item.code}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 历史记录 -->
+  <view class="history-section" wx:if="{{!searchKey && historyList.length > 0}}">
+    <view class="section-header">
+      <text>搜索历史</text>
+      <text class="clear-history" bindtap="clearHistory">清空</text>
+    </view>
+    <view class="history-list">
+      <view 
+        class="history-item" 
+        wx:for="{{historyList}}" 
+        wx:key="code"
+        bindtap="onHistoryTap"
+        data-stock="{{item}}"
+      >
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+</view> 
