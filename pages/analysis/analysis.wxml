@@ -1,2 +1,115 @@
-<!--pages/analysis/analysis.wxml-->
-<text>pages/analysis/analysis.wxml</text>
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar" bindtap="goToSearch">
+    <icon type="search" size="14"></icon>
+    <text style="font-size: small; color: #999;">搜索股票代码或名称</text>
+  </view>
+
+  <!-- Tab 切换 -->
+  <view class="tabs">
+    <view class="tab {{currentTab === 'analysis' ? 'active' : ''}}" bindtap="switchTab" data-tab="analysis">我的估值</view>
+    <view class="tab {{currentTab === 'principles' ? 'active' : ''}}" bindtap="switchTab" data-tab="principles">估值原理</view>
+  </view>
+	<view style="height: 0.5px; background-color: #e6e6e6; width: 100%;"></view>
+  <!-- 内容区域 -->
+  <view class="content">
+    <view class="analysis-content" wx:if="{{currentTab === 'analysis'}}">
+      <!-- 股票列表 -->
+      <view class="stock-list">
+        <block wx:for="{{stockList}}" wx:key="code" wx:for-item="item" wx:for-index="index">
+          <view class="stock-item {{selectedStockIndex === index ? 'selected' : ''}}" bindtap="toggleStockDetail" data-index="{{index}}">
+            <view class="stock-info">
+              <view class="stock-name">{{item.name}}</view>
+              <view class="stock-code">{{item.code}}</view>
+            </view>
+            <view class="arrow-icon">
+              <image src="{{selectedStockIndex === index ? '/assets/icons/arrow-up.png' : '/assets/icons/arrow-down.png'}}" style="width: 12px; height: 10px;"></image>
+            </view>
+          </view>
+
+          <!-- 展开的股票详情 -->
+          <view class="stock-detail" wx:if="{{selectedStockIndex === index}}" animation="{{animationData}}">
+            <!-- 股价预估 -->
+            <view class="valuation-section">
+              <view class="section-title">股价预估</view>
+              <text class="stock-value">{{item.estimatedPrice}}</text>
+            </view>
+
+            <!-- 指标预估 -->
+            <view class="valuation-section">
+              <view class="section-title">指标预估</view>
+              <view class="valuation-grid">
+                <view class="grid-item" wx:for="{{valuationList}}" wx:key="name">
+                  <text class="label">{{item.name}}</text>
+                  <text class="value">{{item.value}}</text>
+                  <text class="estimate">预估: {{item.estimate}}</text>
+                </view>
+              </view>
+            </view>
+
+            <!-- 其他分析 -->
+            <view class="other-analysis">
+              <view class="section-title">其他预估</view>
+              <view class="analysis-item" wx:for="{{analysisList}}" wx:key="name">
+                <text class="label">{{item.name}}</text>
+                <text class="value">{{item.value}}</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <view class="principles-content" wx:if="{{currentTab === 'principles'}}">
+      <!-- 估值原理 -->
+      <!--参数选择-->
+      <view class="section">
+        <view class="section-title">参数选择</view>
+        <text class="description">我们选用DCF估值模型作为传统估值模型，同时选用百度指数、微博情绪与市场数据作为大数据。</text>
+      </view>
+      <!--分割线-->
+      <view class="divider"></view>
+      <!--特色模型-->
+      <view class="section">
+        <view class="section-title">特色模型</view>
+        <view class="model-section">
+          <view class="section-subtitle">财务数据预测模型 f</view>
+          <image src="/assets/images/model1.png"></image>
+          <text class="description">设 f 为财务数据预测模型，用大数据指标预测财报数据，以大数据为自变量 x，财务数据为因变量 y，利用 y=f(x) 预测下一期的财务数据 y。</text>
+        </view>
+        
+        <view class="model-section">
+          <view class="section-subtitle">传统估值模型 g</view>
+          <image src="/assets/images/model2.png"></image>
+          <text class="description">设 g 为传统估值模型，用财报数据预测估值水平，将上一步预测出的财务数据 y0，传统股价估计为因变量 p，利用 p0=g(y) 输出传统估值方法得到的股价。</text>
+        </view>
+
+        <view class="model-section">
+          <view class="section-subtitle">股价综合估值模型 h</view>
+          <image src="/assets/images/model3.png"></image>
+          <text class="description">设 h 为股价估值模型，以第一步 y 的和第二步的 p0 为自变量，估计收益率 r 为因变量，利用 r=h(y,p0) 估计出收益率 r，再反推出最终测算股价 p。</text>
+        </view>
+        
+      </view>
+      <!--分割线-->
+      <view class="divider"></view>
+      <!--算法选择-->
+      <view class="section">
+        <view class="section-title">算法选择</view>
+        <view class="model-section">
+          <view class="section-subtitle">随机森林模型</view>
+          <text class="description">
+            随机森林是一种集成学习方法，通过构建多个决策树并结合其输出进行预测。它在处理高维数据和防止过拟合方面表现出色。对于股票估值，随机森林可以有效地处理多种市场指标和财务数据，提供稳健的估值结果。
+          </text>
+        </view>
+        <view class="model-section">
+          <view class="section-subtitle">XGBoost模型</view>
+          <text class="description">
+            XGBoost是一种高效的梯度提升算法，因其速度快、性能好而被广泛应用。它在处理非线性关系和特征交互方面具有优势。对于股票估值，XGBoost能够利用复杂的市场数据和情绪指标，生成更精确的估值预测。
+          </text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+</view>

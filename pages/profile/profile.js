@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+		nickname: '用户昵称'
   },
 
   /**
@@ -62,5 +62,17 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  goToPersonalInfo: function() {
+    wx.navigateTo({
+      url: '/pages/personal-info/personal-info'
+    });
+  },
+
+  goToAboutUs: function() {
+    wx.navigateTo({
+      url: '/pages/about-us/about-us'
+    });
   }
 })

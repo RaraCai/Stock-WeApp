@@ -1,0 +1,28 @@
+<view class="container">
+	<view class="section">
+	<!--关于估值宝-->
+		<view class="section-title">关于估值宝</view>
+		<view class="content">
+			<view class="description">
+				<view class="paragraph">估值宝是一款帮助用户进行股票估值分析的工具，提供多种估值模型和市场数据。</view>
+				<view class="list-item">- 在搜索栏中输入股票代码或名称，快速查找股票信息。</view>
+				<view class="list-item">- 在行情页面查看实时市场数据和股票涨跌幅。</view>
+				<view class="list-item">- 在估值页面使用多种模型进行股票估值分析。</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="section">
+	<!--关于我们-->
+		<view class="section-title">关于我们</view>
+		<view class="content">
+			<view class="description">
+				<view class="paragraph">估值宝是一款帮助用户进行股票估值分析的工具，提供多种估值模型和市场数据。</view>
+				<view class="list-item">- 在搜索栏中输入股票代码或名称，快速查找股票信息。</view>
+				<view class="list-item">- 在行情页面查看实时市场数据和股票涨跌幅。</view>
+				<view class="list-item">- 在估值页面使用多种模型进行股票估值分析。</view>
+			</view>
+		</view>
+	</view>
+
+</view> 

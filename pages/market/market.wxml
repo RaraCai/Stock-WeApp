@@ -12,37 +12,50 @@
     <view class="tab {{currentMarket === 'HK' ? 'active' : ''}}" bindtap="switchMarket" data-market="HK">港股</view>
     <view class="tab {{currentMarket === 'US' ? 'active' : ''}}" bindtap="switchMarket" data-market="US">美股</view>
   </view>
-
+  <!--分割线-->
+  <view class="divider"></view>
   <!-- 指数信息 -->
   <view class="index-section">
-    <scroll-view scroll-x="true" class="index-scroll">
-      <view class="index-item {{item.change < 0 ? 'down' : 'up'}}" wx:for="{{indexList}}" wx:key="code">
-        <view class="index-name">{{item.name}}</view>
-        <view class="index-price">{{item.price}}</view>
-        <view class="index-change">
-          {{item.change}} {{item.changePercent}}%
-        </view>
-      </view>
-    </scroll-view>
-  </view>
-
-  <!-- 股票列表 -->
-  <view class="stock-list-header">
-    <view class="header-item">股票</view>
-    <view class="header-item">最新</view>
-    <view class="header-item">涨跌幅</view>
-  </view>
-
-  <scroll-view scroll-y="true" class="stock-list">
-    <view class="stock-item" wx:for="{{stockList}}" wx:key="code" bindtap="goToDetail" data-stock="{{item}}">
-      <view class="stock-info">
-        <view class="stock-name">{{item.name}}</view>
-        <view class="stock-code">{{item.code}}</view>
-      </view>
-      <view class="stock-price">{{item.price}}</view>
-      <view class="stock-change {{item.changePercent >= 0 ? 'up' : 'down'}}">
-        {{item.changePercent}}%
+    <view class="index-item {{item.change < 0 ? 'down' : 'up'}}" wx:for="{{indexList}}" wx:key="code">
+      <view class="index-name">{{item.name}}</view>
+      <view class="index-price">{{item.price}}</view>
+      <view class="index-change">
+        {{item.change}} {{item.changePercent}}%
       </view>
     </view>
-  </scroll-view>
+  </view>
+  <view class="divider"></view>
+
+  <!-- 股票列表表头 -->
+	<view class="stock-list-header">
+		<view class="header-stock">股票</view>
+		<view class="header-price" bindtap="sortByPrice">
+			最新
+			<view class="sort-arrows {{sortField === 'price' ? 'active' : ''}}">
+				<view class="arrow-up {{sortField === 'price' && sortOrder === 'asc' ? 'active' : ''}}"></view>
+				<view class="arrow-down {{sortField === 'price' && sortOrder === 'desc' ? 'active' : ''}}"></view>
+			</view>
+		</view>
+		<view class="header-change" bindtap="sortByChange">
+			涨跌幅
+			<view class="sort-arrows {{sortField === 'changePercent' ? 'active' : ''}}">
+				<view class="arrow-up {{sortField === 'changePercent' && sortOrder === 'asc' ? 'active' : ''}}"></view>
+				<view class="arrow-down {{sortField === 'changePercent' && sortOrder === 'desc' ? 'active' : ''}}"></view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 股票列表 -->
+	<scroll-view scroll-y="true" class="stock-list">
+		<view class="stock-item" wx:for="{{stockList}}" wx:key="code" bindtap="goToDetail" data-stock="{{item}}">
+			<view class="stock-info">
+				<view class="stock-name">{{item.name}}</view>
+				<view class="stock-code">{{item.code}}</view>
+			</view>
+			<view class="stock-price">{{item.price}}</view>
+			<view class="stock-change {{item.changePercent >= 0 ? 'up' : 'down'}}">
+				{{item.changePercent}}%
+			</view>
+		</view>
+	</scroll-view>
 </view>

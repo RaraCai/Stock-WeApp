@@ -165,3 +165,42 @@ ec-canvas {
   width: 100%;
   height: 100%;
 } 
+
+.add-button {
+	margin-top: 20rpx;
+  font-size: 27rpx;
+  padding: 15rpx 30rpx;
+  border-radius: 20rpx;
+  background: #732BF5; 
+  color: #fff;
+  border: none;
+  line-height: 1.5;
+	min-height: unset;  /* 覆盖微信默认样式 */
+	display: flex;
+  align-items: center;  
+	justify-content: center;  
+	gap: 12rpx;
+}
+
+/* 已添加状态 */
+.add-button.added {
+  background: #cccccc;  
+  color: #666666;
+}
+.add-button::after {
+	border: none;
+}
+/* 按下效果 */
+.add-button:not(.added):active {
+	background: #4b1f9b; 
+	color: #ccc;
+	opacity: 0.9;
+}
+.add-button.added:active {
+	background: #b3b3b3; 
+	opacity: 0.9;
+}
+.icon {
+  width: 32rpx;
+  height: 32rpx;
+}

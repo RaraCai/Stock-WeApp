@@ -79,4 +79,17 @@
       <ec-canvas id="mychart-dom-kline" canvas-id="mychart-kline" ec="{{ ec }}"></ec-canvas>
     </view>
   </view>
+	<!--添加到自选-->
+	<button 
+		class="add-button {{item.added ? 'added' : ''}}" 
+		disabled="{{item.added}}"
+		bindtap="handleAdd"
+		data-stock="{{item}}"
+	>
+		<image 
+			class="icon" 
+			src="{{item.added ? '/assets/icons/added.png' : '/assets/icons/add.png'}}"
+		></image>
+		{{item.added ? '已添加到自选列表' : '添加到我的自选'}}
+	</button>
 </view> 

@@ -5,7 +5,8 @@
     "pages/analysis/analysis",
     "pages/profile/profile",
     "pages/stock-detail/stock-detail",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/about-us/about-us"
   ],
   "window": {
     "navigationBarBackgroundColor": "#732BF5",

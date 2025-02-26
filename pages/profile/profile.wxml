@@ -1,2 +1,19 @@
 <!--pages/profile/profile.wxml-->
-<text>pages/profile/profile.wxml</text>
+<view class="container">
+  <!-- 用户信息 -->
+  <view class="user-info">
+    <image class="avatar" src="/assets/images/avatar.png"></image>
+    <view class="welcome-text">
+      <text class="greeting">您好，{{nickname}}</text>
+      <text class="welcome">欢迎使用估值宝</text>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="section">
+    <view class="list-item" bindtap="goToAboutUs">
+      <text>关于我们</text>
+      <image class="arrow" src="/assets/icons/arrow-right.png"></image>
+    </view>
+  </view>
+</view>
