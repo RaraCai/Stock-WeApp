@@ -6,7 +6,7 @@
   </view>
 
   <!-- 股票列表 -->
-  <scroll-view scroll-y="true" class="stock-list">
+  <scroll-view scroll-y="true" class="stock-list" wx:if="{{stockList.length > 0}}">
     <view class="stock-item" wx:for="{{stockList}}" wx:key="code" bindtap="goToDetail" data-stock="{{item}}">
       <view class="stock-info">
         <view class="stock-name">{{item.name}}</view>
@@ -20,4 +20,7 @@
       </view>
     </view>
   </scroll-view>
+	<view wx:elif="{{stockList.length === 0}}" class="empty-state">
+    <text>您当前没有自选股票</text>
+  </view>
 </view> 

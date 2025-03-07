@@ -1,0 +1,48 @@
+<view class="container">
+	<!--欢迎语-->
+	<view class="intro_box">
+		<view class="title">估值宝</view>
+		<view class="detail">登录开启您的掌上股票估值之旅</view>
+		<image class="bg" src="/assets/images/index_bg.png"></image>
+	</view>
+
+	<button class="btn-login" style="margin-top: 150rpx; width: 90%;" bindtap="onLogin">一键授权登录</button>
+
+	<!--版权信息-->
+	<view class="copyright_box">
+		<view class="title">copyright©2024 估值宝开发团队</view>
+		<view class="version">All Rights Reserved v1.0.0</view>
+	</view>
+
+
+
+  <!-- 注册弹窗 -->
+    <view class="popup" hidden="{{!showPopup}}" animation="{{animationData}}">
+      <view class="popup-content">
+        <view class="header">
+          <image class="mp-img" src="/assets/images/avatar.png"></image>
+          <text class="title">估值宝小程序</text>
+          <text class="title2">申请</text>
+        </view>
+
+        <view class="body">
+          <text>获取您的昵称、头像及手机号</text>
+          <view class="separator"></view>
+          <view class="data">
+            <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"/>
+            <view class="info"> 
+              <text class="label">微信个人信息</text>
+              <view class="nickname">{{userInfo.nickName}}</view>
+            </view>
+            <icon type="success_no_circle" size="20" color="#07C160" style="margin-top:25rpx; margin-left: 200rpx; "/>
+          </view>
+          <view class="separator"></view>
+        </view>
+
+        <view class="buttons">
+          <button class="btn-cancel" type="default" bindtap="onCancel">取消</button>
+          <button class="btn-allow" type="primary"  bindtap="onAllow">允许</button>
+        </view>
+			</view>
+    </view>    
+</view> 

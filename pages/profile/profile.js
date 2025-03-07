@@ -5,65 +5,24 @@ Page({
    * 页面的初始数据
    */
   data: {
-		nickname: '用户昵称'
+		nickname: '微信用户',
   },
 
-  /**
-   * 生命周期函数--监听页面加载
+  /*
+	 * @brief 生命周期函数，监听页面加载用户昵称
+	 * @param null
+	 * @return null
    */
   onLoad(options) {
-
+		const userInfo = wx.getStorageSync('userInfo');
+		this.setData({ userInfo : userInfo });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
+   /*
+	 * @brief 生命周期函数，监听页面加载用户昵称
+	 * @param null
+	 * @return null
    */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  },
-
   goToPersonalInfo: function() {
     wx.navigateTo({
       url: '/pages/personal-info/personal-info'

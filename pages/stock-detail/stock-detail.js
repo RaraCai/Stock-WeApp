@@ -1,4 +1,5 @@
 import * as echarts from '../../ec-canvas/echarts';
+const config = require('../../config.js');
 
 // 模拟K线数据生成函数
 function generateKlineData(type) {
@@ -175,37 +176,65 @@ Page({
       lazyLoad: true
     }
   },
-
+	/*
+	* @brief 根据父组件股票列表传入的代码获取股票详情
+	* @param options-页面跳转的参数
+	* @return null
+	*/
   onLoad: function(options) {
-    const { code } = options;
-    this.getStockDetail(code);
+    if(options.code){
+			const code = options.code;
+			console.log(code);
+			// 按股票代码向后端索取详情数据
+			this.getStockDetail(code);
+			// 存入本页面数据
+			this.data.stockInfo.code = code;
+		}
   },
 
   onReady: function() {
     this.initChart();
   },
 
+	/*
+	* @brief 根据代码获取股票详情
+	* @param code-股票代码
+	* @return 对应该代码的全部数据
+ 	*/
   getStockDetail: function(code) {
-    // 模拟数据
-    this.setData({
-      stockInfo: {
-        name: '贵州茅台',
-        code: '600519',
-        price: '1899.99',
-        change: '+43.51',
-        changePercentage: 2.35,
-        yearOnYear: 15.6,
-        monthOnMonth: 5.2,
-        peDynamic: 32.5,
-        peStatic: 30.8,
-        pb: 8.5,
-        pbEstimate: 8.2,
-        pcf: 25.6,
-        pcfEstimate: 24.8,
-        peDynamicEstimate: 31.5,
-        peStaticEstimate: 29.8
-      }
-    });
+    // TODO:这里请求股票详情缺了好多东西
+
+
+    // wx.request({
+		// 	url: `${config.baseUrl}/stocks/byId/${code}`,
+		// 	method: 'GET',
+		// 	success: (res) => {
+		// 			// 响应存入页面数据
+		// 			this.data.stockInfo = {
+    //         name: '股票名字暂无',
+    //         code: res.data.stockid,
+    //         price: '市场价暂无',
+    //         change: '涨跌额暂无',
+    //         changePercentage: '涨跌幅暂无',
+    //         yearOnYear: res.data.yearOnYear,
+    //         monthOnMonth: res.data.monthOnMonth,
+    //         peDynamic: res.data.peDynamic,
+    //         peStatic: res.data.peStatic,
+    //         pb: res.data.pb,
+    //         pbEstimate: res.data.pbEstimate,
+    //         pcf: res.data.pcf,
+    //         pcfEstimate: res.data.pcfEstimate,
+    //         peDynamicEstimate: res.data.peDynamicEstimate,
+    //         peStaticEstimate: res.data.peStaticEstimate
+    //       };
+
+// 更新注册状态
+					this.globalData.userExists = res.data.userExists;
+			},
+			fail: (err) => {
+					console.error('获取openid失败', err);
+			}
+	});
   },
 
   initChart: function() {

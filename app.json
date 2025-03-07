@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/mystock/mystock",
     "pages/market/market",
     "pages/analysis/analysis",

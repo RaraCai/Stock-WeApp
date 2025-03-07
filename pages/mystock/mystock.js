@@ -1,14 +1,8 @@
+// 定义股票对象的类型
+
 Page({
   data: {
-    stockList: [
-      {
-        name: '贵州茅台',
-        code: '600519',
-        price: '1899.99',
-        changePercentage: 2.35
-      },
-      // 这里可以添加更多股票数据
-    ]
+    stockList: []
   },
 
   onLoad: function() {
@@ -16,8 +10,13 @@ Page({
     this.getMyStocks()
   },
 
+	/*
+	* @brief 从后端获取用户自选股票数据
+	* @param null
+	* @return 填充本页面的股票列表
+	*/ 
   getMyStocks: function() {
-    // 这里添加获取自选股票的逻辑
+    
   },
 
   goToSearch: function() {
